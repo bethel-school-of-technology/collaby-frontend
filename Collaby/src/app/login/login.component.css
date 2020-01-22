@@ -99,6 +99,17 @@ img {
     padding-bottom: 5px;
 }
 
+.login-btn:hover {
+    background-color: rgb(37, 99, 139);
+    border:2px solid rgb(37, 99, 139);
+}
+
+.sign-up-btn:hover {
+    background-color: rgb(37, 99, 139);
+    border:2px solid rgb(37, 99, 139);
+}
+
+
 .both-sides {
     margin: auto;
     width: 1300px;

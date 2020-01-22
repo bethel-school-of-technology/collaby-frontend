@@ -31,9 +31,9 @@
                     <input class="sign-up-input" type="input" placeholder="First Name" /><br>
                     <input class="sign-up-input" type="input" placeholder="Last Name" /><br>
                     <input class="sign-up-input" type="email" placeholder="Email" /><br>
-                    <input class="sign-up-input" type="password" placeholder="Password" /><br>
+                    <input id="password" class="sign-up-input" type="password" placeholder="Password" /><br>
                     <input class="sign-up-input" type="password" placeholder="Confirm Password" /><br>
-                    <input class="sign-up-btn" type="submit" value="Submit" />
+                    <input (click)="lengthCheck()" class="sign-up-btn" type="submit" value="Submit" />
                 </form>
             </div>
             <h3>Already a Member?</h3>
@@ -41,7 +41,7 @@
                 <form>
                     <input class="login-input" type="email" placeholder="Email" /><br>
                     <input class="login-input" type="password" placeholder="Password" /><br>
-                    <input class="login-btn" type="submit" value="Submit" />
+                    <input class="login-btn" type="submit" value="Login" />
                 </form>
             </div>
         </div>
