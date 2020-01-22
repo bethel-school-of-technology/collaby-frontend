@@ -27,9 +27,9 @@ img {
 
 .right-side {
     display: inline-block;
-    vertical-align: top;
-    margin-left: 275px;
+    margin-left: 475px;
     margin-top: 50px;
+    width: 200px;
 }
 
 .sign-up {
@@ -97,4 +97,23 @@ img {
     width: 100%;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.both-sides {
+    margin: auto;
+    width: 1300px;
+}
+
+@media screen and (max-width: 1250px) {
+    .both-sides {
+        width: auto;
+    }
+    .right-side {
+        display: inline-block;
+        width: auto;
+        margin-left: 0px;
+    }
+    .left-side {
+        display: inline-block;
+  }
 }
