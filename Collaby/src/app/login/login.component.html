@@ -1,51 +1,42 @@
-<html>
-
-<head>
-
-
-</head>
-
-<body>
-    <div class="both-sides">
-        <div class="left-side">
-            <h1>Create your best writing in a <br> constructive and flexible environment</h1>
-            <ul class="login-list">
-                <div class="list-div">
-                    <img class="style-image" src="../../assets/images/post.svg" alt="Stylistic image">
-                    <li class="style-list">View the best writing the web has to offer</li><br>
-                </div>
-                <div class="list-div">
-                    <img class="style-image" src="../../assets/images/rating.svg" alt="Stylistic image">
-                    <li class="style-list">Follow writers and rate their posts</li><br>
-                </div>
-                <div class="list-div">
-                    <img class="style-image" src="../../assets/images/profile.svg" alt="Stylistic image">
-                    <li class="style-list">Accumulate ratings as you build your profile</li><br>
-                </div>
-            </ul>
+<div class="both-sides">
+    <div class="left-side">
+        <h1>Create your best writing in a <br> constructive and flexible environment</h1>
+        <ul class="login-list">
+            <div class="list-div">
+                <img class="style-image" src="../../assets/images/post.svg" alt="Stylistic image">
+                <li class="style-list">View the best writing the web has to offer</li><br>
+            </div>
+            <div class="list-div">
+                <img class="style-image" src="../../assets/images/rating.svg" alt="Stylistic image">
+                <li class="style-list">Follow writers and rate their posts</li><br>
+            </div>
+            <div class="list-div">
+                <img class="style-image" src="../../assets/images/profile.svg" alt="Stylistic image">
+                <li class="style-list">Accumulate ratings as you build your profile</li><br>
+            </div>
+        </ul>
+    </div>
+    <div class="right-side">
+        <h3>New Here?</h3>
+        <div class="sign-up">
+            <form>
+                <input class="sign-up-input" type="input" placeholder="First Name" /><br>
+                <input class="sign-up-input" type="input" placeholder="Last Name" /><br>
+                <input class="sign-up-input" type="email" placeholder="Email" /><br>
+                <input class="sign-up-input" type="input" placeholder="Username" /><br>
+                <input id="password" class="sign-up-input" type="password" placeholder="Password" /><br>
+                <input class="sign-up-input" type="password" placeholder="Confirm Password" /><br>
+                <input (click)="lengthCheck()" class="sign-up-btn" type="submit" value="Submit" />
+                <!--lengthCheck checks the length of the password when submit is clicked-->
+            </form>
         </div>
-        <div class="right-side">
-            <h3>New Here?</h3>
-            <div class="sign-up">
-                <form>
-                    <input class="sign-up-input" type="input" placeholder="First Name" /><br>
-                    <input class="sign-up-input" type="input" placeholder="Last Name" /><br>
-                    <input class="sign-up-input" type="email" placeholder="Email" /><br>
-                    <input id="password" class="sign-up-input" type="password" placeholder="Password" /><br>
-                    <input class="sign-up-input" type="password" placeholder="Confirm Password" /><br>
-                    <input (click)="lengthCheck()" class="sign-up-btn" type="submit" value="Submit" />
-                </form>
-            </div>
-            <h3>Already a Member?</h3>
-            <div class="login">
-                <form>
-                    <input class="login-input" type="email" placeholder="Email" /><br>
-                    <input class="login-input" type="password" placeholder="Password" /><br>
-                    <input class="login-btn" type="submit" value="Login" />
-                </form>
-            </div>
+        <h3>Already a Member?</h3>
+        <div class="login">
+            <form>
+                <input class="login-input" type="email" placeholder="Email" /><br>
+                <input class="login-input" type="password" placeholder="Password" /><br>
+                <input class="login-btn" type="submit" value="Login" />
+            </form>
         </div>
     </div>
-</body>
-
-</html>
+</div>
