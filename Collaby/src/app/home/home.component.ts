@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http'
+import { HttpService } from '../services/http.service'
 
 
 @Component({
@@ -16,19 +16,19 @@ export class HomeComponent implements OnInit {
   //   })
   // };
 
-  constructor(private http: HttpClient) { }
+  constructor(private _http: HttpService) { }
 
-  postMessage;
-
-  postURL = 'https://api.github.com/users/brandenkenn';
+  posts: Object;
 
   ngOnInit() {
-    let blog = this.http.get<any>(this.postURL)
-    console.log(blog + " it works!")
+    this._http.getPosts().subscribe(data => {
+      this.posts = data;
+      console.log(this.posts)
+    })
   }
 
   submitPosts() {
-
+    this._http.postPosts()
   }
 
 }
