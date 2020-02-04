@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service'
-
+import { Post } from '../models/Post'
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
   selector: 'app-home',
@@ -9,26 +10,20 @@ import { HttpService } from '../services/http.service'
 })
 export class HomeComponent implements OnInit {
 
-  // httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Access-Control-Allow-Origin': 'https://localhost:5001',
-  //     'userId': '0'
-  //   })
-  // };
-
   constructor(private _http: HttpService) { }
 
-  posts: Object;
+  posts: Object
+
+  submitPosts() {
+    this._http.postPosts()
+  }
 
   ngOnInit() {
+
     this._http.getPosts().subscribe(data => {
       this.posts = data;
       console.log(this.posts)
     })
-  }
-
-  submitPosts() {
-    this._http.postPosts()
   }
 
 }

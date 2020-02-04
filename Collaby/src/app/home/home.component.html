@@ -1,7 +1,9 @@
-<form>
-    <textarea id="postText"></textarea>
-    <input (click)="submitPosts()" type="submit">
+<form class="form" (ngSubmit)="submitPosts()">
+    <input type="text" id="message" name="message" [(ngModel)]="message" placeholder="Start your post!">
+    <input type="submit" value="Submit">
 </form>
 <div class="posts">
-    <p></p>
+    <ul *ngFor="let post of posts">
+        <li>{{ post.message }}</li>
+    </ul>
 </div>
