@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../services/http.service'
-import { Post } from '../models/Post'
+import { CreatePost } from '../models/CreatePost'
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 
 @Component({
