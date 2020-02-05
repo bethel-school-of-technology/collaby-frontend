@@ -5,5 +5,5 @@ export class Comment {
     UserId:number;
     PostId:number;
     IsDraft:number;
-    DateCreate?:Date;
+    DateCreated?:Date;
 }
