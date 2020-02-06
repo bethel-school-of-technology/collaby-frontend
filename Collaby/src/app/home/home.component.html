@@ -1,9 +1,10 @@
 <form class="form" (ngSubmit)="submitPosts()">
+    <input type="text" id="title" name="title" [(ngModel)]="title" placeholder="Title">
     <input type="text" id="message" name="message" [(ngModel)]="message" placeholder="Start your post!">
     <input type="submit" value="Submit">
 </form>
 <div class="posts">
     <ul *ngFor="let post of posts">
-        <li>{{ post.message }}</li>
+        <li>{{ post.title }} {{ post.message }}</li>
     </ul>
 </div>

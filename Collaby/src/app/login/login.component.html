@@ -24,6 +24,7 @@
                 <input class="sign-up-input" type="input" placeholder="Last Name" /><br>
                 <input class="sign-up-input" type="email" placeholder="Email" /><br>
                 <input class="sign-up-input" type="input" placeholder="Username" /><br>
+                <input class="sign-up-input" type="input" placeholder="Location" /><br>
                 <input id="password" class="sign-up-input" type="password" placeholder="Password" /><br>
                 <input class="sign-up-input" type="password" placeholder="Confirm Password" /><br>
                 <input (click)="lengthCheck()" class="sign-up-btn" type="submit" value="Submit" />
@@ -32,9 +33,11 @@
         </div>
         <h3>Already a Member?</h3>
         <div class="login">
-            <form>
-                <input class="login-input" type="email" placeholder="Email" /><br>
-                <input class="login-input" type="password" placeholder="Password" /><br>
+            <form class="form" (ngSubmit)="login()">
+                <input class="login-input" type="email" name="Email" [(ngModel)]="loginModel.Email" placeholder="Email">
+                <input class="login-input" type="password" name="Password" [(ngModel)]="loginModel.Password" placeholder="Password">
+                <!--<input class="login-input" type="email" placeholder="Email" /><br>
+                <input class="login-input" type="password" placeholder="Password" /><br>-->
                 <input class="login-btn" type="submit" value="Login" />
             </form>
         </div>
