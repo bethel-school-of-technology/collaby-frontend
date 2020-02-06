@@ -1,10 +1,14 @@
 <form class="form" (ngSubmit)="submitPosts()">
-    <input type="text" id="title" name="title" [(ngModel)]="title" placeholder="Title">
-    <input type="text" id="message" name="message" [(ngModel)]="message" placeholder="Start your post!">
+
+
+    <input type="text" id="title" name="Title" [(ngModel)]="postToCreate.Title" placeholder="Post title">
+    <input type="text" id="message" name="Message" [(ngModel)]="postToCreate.Message" placeholder="Start your post!">
     <input type="submit" value="Submit">
 </form>
 <div class="posts">
     <ul *ngFor="let post of posts">
         <li>{{ post.title }} {{ post.message }}</li>
+
+        <button (click)="deleteMyPost(post)" class="delete" type="submit">x</button>
     </ul>
 </div>

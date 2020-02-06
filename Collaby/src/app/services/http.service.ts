@@ -17,23 +17,29 @@ const apiUrl = 'https://localhost:5001/api/'
 })
 export class HttpService {
 
-  results = []
+  postUrl = 'https://localhost:5001/api/posts'
 
   constructor(private http: HttpClient) { }
-
-  getPosts():Observable<Post[]> {
-    return this.http.get<Post[]>(apiUrl+'posts')
-  }
-
-  postPosts() {
-
-    let jsonObj = JSON.stringify({ "Message": (<HTMLInputElement>document.getElementById("message")).value, "Title": (<HTMLInputElement>document.getElementById("title")).value , "UserId": 1 })
-    return this.http.post<any>(apiUrl+'posts', jsonObj, httpOptions)
-  }
 
   getToken(loginModel:Login){
     let jsonObj = JSON.stringify(loginModel)
 
     return this.http.post<any>(apiUrl+'login', jsonObj, httpOptions)
+  }
+
+  getPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>('https://localhost:5001/api/posts?')
+  }
+
+  postPosts(newPost: CreatePost) {
+    newPost.UserId = 1;
+    let jsonObj = JSON.stringify(newPost);
+    return this.http.post<any>(this.postUrl, jsonObj, httpOptions);
+  }
+
+  deletePost(post: Post) {
+    let postBody = JSON.stringify(post)
+    let url = `${this.postUrl}/delete`
+    return this.http.post<Post>(url, postBody, httpOptions)
   }
 }
