@@ -5,5 +5,6 @@
 <div class="posts">
     <ul *ngFor="let post of posts">
         <li>{{ post.message }}</li>
+        <button (click)="deleteMyPost(post)" class="delete" type="submit">x</button>
     </ul>
 </div>

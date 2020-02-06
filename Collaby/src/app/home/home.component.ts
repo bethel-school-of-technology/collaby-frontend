@@ -12,14 +12,23 @@ export class HomeComponent implements OnInit {
 
   constructor(private _http: HttpService) { }
 
-  posts: Object
+  posts: Post[]
+
+  postArray: Post[]
+
+
 
   submitPosts() {
     this._http.postPosts()
   }
 
-  ngOnInit() {
+  deleteMyPost(post: Post) {
+    this.posts = this.posts.filter(p => p.id !== post.id)
+    this._http.deletePost(post).subscribe();
+    console.log('delete me')
+  }
 
+  ngOnInit() {
     this._http.getPosts().subscribe(data => {
       this.posts = data;
       console.log(this.posts)

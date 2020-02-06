@@ -1,5 +1,4 @@
-export interface Post {
-    id: number;
+export class Comment {
     UserId?: number;
     Message: string;
 }
