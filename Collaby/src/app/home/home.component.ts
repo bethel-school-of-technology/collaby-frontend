@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../services/http.service'
-import { Post } from '../models/Post'
+
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+
+import { Post } from '../models/Post'
+import { CreatePost } from '../models/CreatePost';
 
 @Component({
   selector: 'app-home',
@@ -16,16 +19,18 @@ export class HomeComponent implements OnInit {
 
   postArray: Post[]
 
-
+  @Input() postToCreate: CreatePost = new CreatePost
 
   submitPosts() {
-    this._http.postPosts()
+    this._http.postPosts(this.postToCreate)
+    console.log("working")
   }
 
   deleteMyPost(post: Post) {
-    this.posts = this.posts.filter(p => p.id !== post.id)
+    //deletes post from UI
+    this.posts = this.posts.filter(p => p.Id !== post.Id)
+    //deletes post from database
     this._http.deletePost(post).subscribe();
-    console.log('delete me')
   }
 
   ngOnInit() {

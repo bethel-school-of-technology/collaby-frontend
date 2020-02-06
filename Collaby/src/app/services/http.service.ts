@@ -1,8 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+
 import { Post } from '../models/Post';
+import { CreatePost } from '../models/CreatePost'
+
 import { Observable } from 'rxjs';
 import { JsonPipe } from '@angular/common';
+
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,8 +19,6 @@ const httpOptions = {
 })
 export class HttpService {
 
-  results = []
-
   constructor(private http: HttpClient) { }
 
   postUrl = 'https://localhost:5001/api/posts'
@@ -25,11 +27,10 @@ export class HttpService {
     return this.http.get<Post[]>('https://localhost:5001/api/posts?')
   }
 
-  postPosts() {
-
-    let jsonObj = JSON.stringify({ "Message": (<HTMLInputElement>document.getElementById("message")).value, "UserId": 1 })
-
-    return this.http.post<any>(this.postUrl, jsonObj, httpOptions)
+  postPosts(newPost: CreatePost) {
+    newPost.UserId = 1;
+    let jsonObj = JSON.stringify(newPost);
+    return this.http.post<string>(this.postUrl, jsonObj, httpOptions).subscribe();
   }
 
   deletePost(post: Post) {
