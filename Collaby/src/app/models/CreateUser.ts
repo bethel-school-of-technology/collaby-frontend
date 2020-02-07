@@ -6,6 +6,6 @@ export class CreateUser{
     FirstName:string;
     LastName:string;
     Location:string;
-    //Img:string;
+    Img:string=null;
 
 }

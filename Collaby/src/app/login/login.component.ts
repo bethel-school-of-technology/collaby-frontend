@@ -17,11 +17,26 @@ export class LoginComponent implements OnInit {
   @Input() loginModel:Login = new Login;
   @Input() user:CreateUser = new CreateUser;
   @Input() pass:Password = new Password;
-  
+  //base64textString:string = null
 
   constructor( private cookieService: CookieService, private _http: HttpService ) { }
 
   ngOnInit() {
+  }
+
+  onUploadChange(evt: any) {
+    const file = evt.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = this.handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+    //console.log(this.base64textString)
+  }
+
+  handleReaderLoaded(e) {
+    this.user.Img = 'data:image/png;base64,' + btoa(e.target.result);
   }
 
   passwordCheck() {
@@ -61,6 +76,7 @@ export class LoginComponent implements OnInit {
   }
   
   addUser(){
+    console.log(this.user.Img)
     var response = this.passwordCheck()
     if(response != null){
       return alert(response)

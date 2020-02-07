@@ -27,6 +27,7 @@
                 <input class="sign-up-input" type="input" name="Location" [(ngModel)]="user.Location" placeholder="Location" /><br>
                 <input id="password" class="sign-up-input" type="password" name="Password" [(ngModel)]="pass.Pass" placeholder="Password"/><br>
                 <input class="sign-up-input" type="password" name="ConfirmPassword" [(ngModel)]="pass.ConfirmPass" placeholder="Confirm Password"/><br>
+                <input type="file" (change)="onUploadChange($event)" accept=".png, .jpg, .jpeg, .pdf"/>
                 <input class="sign-up-btn" type="submit" value="Submit"/>
                 <!--lengthCheck checks the length of the password when submit is clicked-->
             </form>
