@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   @Input() postToCreate: CreatePost = new CreatePost
 
   submitPosts() {
-    this._http.postPosts(this.postToCreate).subscribe(data=>console.log(data.response))
+    this._http.createPosts(this.postToCreate).subscribe(data=>console.log(data.response))
   }
 
   deleteMyPost(post: Post) {

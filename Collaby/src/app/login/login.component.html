@@ -19,15 +19,15 @@
     <div class="right-side">
         <h3>New Here?</h3>
         <div class="sign-up">
-            <form>
-                <input class="sign-up-input" type="input" placeholder="First Name" /><br>
-                <input class="sign-up-input" type="input" placeholder="Last Name" /><br>
-                <input class="sign-up-input" type="email" placeholder="Email" /><br>
-                <input class="sign-up-input" type="input" placeholder="Username" /><br>
-                <input class="sign-up-input" type="input" placeholder="Location" /><br>
-                <input id="password" class="sign-up-input" type="password" placeholder="Password" /><br>
-                <input class="sign-up-input" type="password" placeholder="Confirm Password" /><br>
-                <input (click)="lengthCheck()" class="sign-up-btn" type="submit" value="Submit" />
+            <form class="form" (ngSubmit)="addUser()">
+                <input class="sign-up-input" type="input" name="FirstName" [(ngModel)]="user.FirstName" placeholder="First Name"/><br>
+                <input class="sign-up-input" type="input" name="LastName" [(ngModel)]="user.LastName" placeholder="Last Name"/><br>
+                <input class="sign-up-input" type="email" name="Email" [(ngModel)]="user.Email" placeholder="Email"/><br>
+                <input class="sign-up-input" type="input" name="Username" [(ngModel)]="user.Username" placeholder="Username" /><br>
+                <input class="sign-up-input" type="input" name="Location" [(ngModel)]="user.Location" placeholder="Location" /><br>
+                <input id="password" class="sign-up-input" type="password" name="Password" [(ngModel)]="pass.Pass" placeholder="Password"/><br>
+                <input class="sign-up-input" type="password" name="ConfirmPassword" [(ngModel)]="pass.ConfirmPass" placeholder="Confirm Password"/><br>
+                <input class="sign-up-btn" type="submit" value="Submit"/>
                 <!--lengthCheck checks the length of the password when submit is clicked-->
             </form>
         </div>
