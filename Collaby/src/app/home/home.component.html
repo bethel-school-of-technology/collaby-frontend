@@ -1,11 +1,19 @@
 <form class="form" (ngSubmit)="submitPosts()">
-    <input type="text" id="title" name="Title" [(ngModel)]="postToCreate.Title" placeholder="Post title">
-    <input type="text" id="message" name="Message" [(ngModel)]="postToCreate.Message" placeholder="Start your post!">
-    <input type="submit" value="Submit">
+    <input class="title-box" type="textarea" id="title" name="Title" [(ngModel)]="postToCreate.Title"
+        placeholder="Post title">
+    <input class="message-box" type="text" id="message" name="Message" [(ngModel)]="postToCreate.Message"
+        placeholder="Start your post!">
+    <input type="submit" value="Submit" class="submit-post">
 </form>
-<div class="posts">
-    <ul *ngFor="let post of posts">
-        <li>{{ post.title }} {{ post.message }}</li>
-        <button (click)="deleteMyPost(post)" class="delete" type="submit">x</button>
-    </ul>
+<div class="post-container">
+    <div class="posts">
+        <ul class="post-structure" *ngFor="let post of posts">
+            <li class="title">{{ post.title }}</li>
+            <li class="message">{{ post.message }}</li>
+            <div class="utility-container">
+                <input class="comment-box" placeholder="add a comment...">
+                <button (click)="deleteMyPost(post)" class="delete" type="submit">x</button>
+            </div>
+        </ul>
+    </div>
 </div>
