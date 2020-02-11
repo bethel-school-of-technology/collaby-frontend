@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Login } from '../models/Login';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, Validators } from '@angular/forms';
 import { HttpService } from '../services/http.service'
 import { CreateUser } from '../models/CreateUser';
 import { Password } from '../models/Password';
@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
       reader.onload = this.handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
     }
-    //console.log(this.base64textString)
   }
 
   handleReaderLoaded(e) {
@@ -50,7 +49,6 @@ export class LoginComponent implements OnInit {
 
       if (functionPassword.length <= 8 || functionPassword.length >= 20) {
         return "Password length must be between 8 and 20 characters."
-      
       }else{
         let i = 0
         while(i < functionPassword.length){
@@ -64,8 +62,7 @@ export class LoginComponent implements OnInit {
           }
           else if(97 <= asciiVal && 122 >= asciiVal){ //confirm if password has a lowercase
             confirmation[2] = true
-          }
-          if(confirmation[0] == true && confirmation[1] == true && confirmation[2] == true){
+          }if(confirmation[0] == true && confirmation[1] == true && confirmation[2] == true){
             return null;
           }
           i++
@@ -88,12 +85,19 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this._http.getToken(this.loginModel).subscribe(data=>{data.token})
+    this._http.getToken(this.loginModel).subscribe(data=>{
+      if(data.token == ""){
+        alert("Email or password was typed incorrectly");
+      }else{
+        console.log(data.token)
+        this.createCookie(data.token);
+      }
+    })
   }
 
-  createCookie(){
+  createCookie(token:string){
 
-    this.cookieService.set( 'Test', 'Hello World' );
+    this.cookieService.set( 'Token', token );
     //this.cookieSerive.set('Token',"Bearer:"+getToken())
     this.cookieValue = this.cookieService.get("Test")
   }

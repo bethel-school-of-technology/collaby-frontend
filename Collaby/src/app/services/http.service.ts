@@ -5,12 +5,15 @@ import { Post } from '../models/Post';
 import { Observable } from 'rxjs';
 import { Login } from "../models/Login"
 import { CreateUser } from '../models/CreateUser';
+import { CookieService } from 'ngx-cookie-service';
 
-const httpOptions = {
+/*const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Authorization':this.cookieService.get('Token')
   })
-}
+}*/
+
 const apiUrl = 'https://localhost:5001/api/'
 
 @Injectable({
@@ -18,41 +21,61 @@ const apiUrl = 'https://localhost:5001/api/'
 })
 export class HttpService {
 
+  httpOptions:object;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cookieService:CookieService) {
+
+    try{ //check if the cookie token exists
+      console.log(cookieService.get('Token'))
+    }catch{
+      cookieService.set('Token', null)
+    }
+
+    const _httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': cookieService.get('Token')
+      })
+    }
+
+    this.httpOptions = _httpOptions;
+  }
 
   getToken(loginModel:Login){
     let jsonObj = JSON.stringify(loginModel)
-    return this.http.post<any>(apiUrl+'login', jsonObj, httpOptions)
+    return this.http.post<any>(apiUrl+'login', jsonObj, this.httpOptions)
   }
 
   getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(apiUrl+'posts?')
+    return this.http.get<Post[]>(apiUrl+'posts?', this.httpOptions)
   }
 
   getDrafts(): Observable<Post[]> {
-    return this.http.get<Post[]>(apiUrl+'posts/drafts')
+    return this.http.get<Post[]>(apiUrl+'posts/drafts', this.httpOptions)
   }
 
   createPosts(newPost: CreatePost) {
     newPost.UserId = 1;
     let jsonObj = JSON.stringify(newPost);
-    return this.http.post<any>(apiUrl+"posts", jsonObj, httpOptions);
+    return this.http.post<any>(apiUrl+"posts", jsonObj, this.httpOptions);
   }
 
   createUser(user:CreateUser){
-    return this.http.post<any>(apiUrl+"users", JSON.stringify(user), httpOptions);
+    return this.http.post<any>(apiUrl+"users", JSON.stringify(user), this.httpOptions);
   }
 
   editPost(post:Post){
     post.UserId = 1;
     let jsonObj = JSON.stringify(post);
-    return this.http.put<any>(apiUrl+"posts", jsonObj, httpOptions);
+    return this.http.put<any>(apiUrl+"posts", jsonObj, this.httpOptions);
   }
   
   deletePost(post: Post) {
     let postBody = JSON.stringify(post)
     let url = `${apiUrl+"posts"}/delete`
-    return this.http.post<Post>(url, postBody, httpOptions)
+    return this.http.post<any>(url, postBody, this.httpOptions)
+  }
+  logout(){
+    this.cookieService.set('Token', null)
   }
 }
