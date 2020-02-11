@@ -25,12 +25,6 @@ export class HttpService {
 
   constructor(private http: HttpClient, private cookieService:CookieService) {
 
-    try{ //check if the cookie token exists
-      console.log(cookieService.get('Token'))
-    }catch{
-      cookieService.set('Token', null)
-    }
-
     const _httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -75,7 +69,8 @@ export class HttpService {
     let url = `${apiUrl+"posts"}/delete`
     return this.http.post<any>(url, postBody, this.httpOptions)
   }
-  logout(){
-    this.cookieService.set('Token', null)
+
+  checkToken(){
+    return this.http.get<any>(apiUrl+"login/check", this.httpOptions)
   }
 }

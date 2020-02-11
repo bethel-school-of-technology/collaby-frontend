@@ -98,7 +98,6 @@ export class LoginComponent implements OnInit {
   createCookie(token:string){
 
     this.cookieService.set( 'Token', token );
-    //this.cookieSerive.set('Token',"Bearer:"+getToken())
     this.cookieValue = this.cookieService.get("Test")
   }
 
