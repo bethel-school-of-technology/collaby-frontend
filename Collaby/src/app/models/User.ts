@@ -6,4 +6,7 @@ export class User {
     Location:string;
     Img:string;
     Followers:number;
+    Followings:string;
+    TotalPosts:number;
+    
 }

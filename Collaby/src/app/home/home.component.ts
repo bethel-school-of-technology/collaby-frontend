@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../services/http.service'
 
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
-
 import { Post } from '../models/Post'
 import { CreatePost } from '../models/CreatePost';
 
@@ -22,22 +21,19 @@ export class HomeComponent implements OnInit {
   @Input() postToCreate: CreatePost = new CreatePost
 
   submitPosts() {
-    this._http.postPosts(this.postToCreate)
-    console.log("working")
+    this._http.createPosts(this.postToCreate).subscribe(data=>console.log(data.response))
   }
 
   deleteMyPost(post: Post) {
     //deletes post from UI
     this.posts = this.posts.filter(p => p.Id == post.Id)
     //deletes post from database
-    this._http.deletePost(post).subscribe();
+    this._http.deletePost(post).subscribe(data=>console.log(data.response));
   }
-
   ngOnInit() {
     this._http.getPosts().subscribe(data => {
       this.posts = data;
       console.log(this.posts)
     })
   }
-
 }
