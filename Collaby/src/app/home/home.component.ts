@@ -10,7 +10,9 @@ import { CreatePost } from '../models/CreatePost';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
+
 export class HomeComponent implements OnInit {
+
 
   constructor(private _http: HttpService) { }
 
@@ -21,14 +23,14 @@ export class HomeComponent implements OnInit {
   @Input() postToCreate: CreatePost = new CreatePost
 
   submitPosts() {
-    this._http.createPosts(this.postToCreate).subscribe(data=>console.log(data.response))
+    this._http.createPosts(this.postToCreate).subscribe(data => console.log(data.response))
   }
 
   deleteMyPost(post: Post) {
     //deletes post from UI
     this.posts = this.posts.filter(p => p.Id == post.Id)
     //deletes post from database
-    this._http.deletePost(post).subscribe(data=>console.log(data.response));
+    this._http.deletePost(post).subscribe(data => console.log(data.response));
   }
   ngOnInit() {
     this._http.getPosts().subscribe(data => {
