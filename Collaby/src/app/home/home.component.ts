@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
 
   deleteMyPost(post: Post) {
     //deletes post from UI
-    this.posts = this.posts.filter(p => p.Id !== post.Id)
+    this.posts = this.posts.filter(p => p.Id == post.Id)
     //deletes post from database
     this._http.deletePost(post).subscribe(data=>console.log(data.response));
   }
