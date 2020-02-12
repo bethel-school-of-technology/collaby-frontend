@@ -2,6 +2,7 @@ import { CreatePost } from './CreatePost';
 
 export class Post extends CreatePost {
 
+    UserId:number;
     Id: number;
     DateCreated?: Date;
     DateModified?: Date;
