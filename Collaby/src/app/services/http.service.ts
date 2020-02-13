@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { CreatePost } from '../models/CreatePost';
 import { Post } from '../models/Post';
@@ -69,6 +69,6 @@ export class HttpService {
   }
 
   checkToken(){
-    return this.http.get<any>(apiUrl+"login/check", this.httpOptions)
+    return this.http.get<any>(apiUrl+"login/confirmToken", this.httpOptions)
   }
 }

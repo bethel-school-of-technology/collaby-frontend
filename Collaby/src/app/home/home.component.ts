@@ -4,6 +4,7 @@ import { HttpService } from '../services/http.service'
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Post } from '../models/Post'
 import { CreatePost } from '../models/CreatePost';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ import { CreatePost } from '../models/CreatePost';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private _http: HttpService) { }
+  constructor(private _http: HttpService, private cookieService:CookieService) { }
 
   posts: Post[]
 
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
   }
   
   ngOnInit() {
+    console.log(this.cookieService.get('Token'))
     this._http.getPosts().subscribe(data => {
       this.posts = data;
       console.log(this.posts)

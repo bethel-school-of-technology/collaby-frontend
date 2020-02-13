@@ -16,22 +16,51 @@ export class LoginComponent implements OnInit {
   @Input() loginModel:Login = new Login;
   @Input() user:CreateUser = new CreateUser;
   @Input() pass:Password = new Password;
+  maxWH:number = 250
+  minWH:number = 150 
   //base64textString:string = null
 
   constructor( private cookieService: CookieService, private _http: HttpService ) { }
 
   ngOnInit() {
+    //try{
+    //  this._http.checkToken().subscribe(data=>console.log(data.status))
+    //  console.log("fail")
+    //}catch{
+    //  console.log("try")
+    //}
   }
 
   onUploadChange(evt: any) {
     const file = evt.target.files[0];
 
     if (file) {
-      let img = new Image();
-      img.src = window.URL.createObjectURL( file );
+
       const reader = new FileReader();
-      reader.onload = this.handleReaderLoaded.bind(this);
-      reader.readAsBinaryString(file);
+      let img = new Image();
+
+      img.src = window.URL.createObjectURL( file );
+      reader.readAsDataURL(file);
+        
+      setTimeout(() => {
+          
+        const width = img.naturalWidth;
+        const height = img.naturalHeight;
+      
+        window.URL.revokeObjectURL( img.src );
+        console.log(width + '*' + height);
+        if ( (width < this.minWH || width > this.maxWH) && (height < this.minWH || height > this.maxWH) ) {
+          alert('photo should be between dimensions '+this.minWH+' x '+this.minWH+' and '+this.maxWH+' x '+this.maxWH);
+          this.user.Img = null;
+        }else{
+          reader.onload = this.handleReaderLoaded.bind(this);
+        }
+      }, 2000);
+      //let img = new Image();
+      //img.src = window.URL.createObjectURL( file );
+      //const reader = new FileReader();
+      //reader.onload = this.handleReaderLoaded.bind(this);
+      //reader.readAsBinaryString(file);
     }
   }
 
@@ -88,7 +117,7 @@ export class LoginComponent implements OnInit {
   login(){
     this._http.getToken(this.loginModel).subscribe(data=>{
       if(data.token == ""){
-        alert("Email or password was typed incorrectly");
+        alert(data.response);
       }else{
         console.log(data.token)
         this.createCookie(data.token);
