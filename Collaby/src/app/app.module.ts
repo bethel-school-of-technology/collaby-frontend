@@ -48,5 +48,4 @@ export class AppModule {
   logout(){
     this.cookieService.set('Token', null)
   }
-
 }

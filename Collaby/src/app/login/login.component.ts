@@ -13,7 +13,6 @@ import { Password } from '../models/Password';
 })
 export class LoginComponent implements OnInit {
   
-  cookieValue:string;
   @Input() loginModel:Login = new Login;
   @Input() user:CreateUser = new CreateUser;
   @Input() pass:Password = new Password;
@@ -28,6 +27,8 @@ export class LoginComponent implements OnInit {
     const file = evt.target.files[0];
 
     if (file) {
+      let img = new Image();
+      img.src = window.URL.createObjectURL( file );
       const reader = new FileReader();
       reader.onload = this.handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
@@ -96,9 +97,6 @@ export class LoginComponent implements OnInit {
   }
 
   createCookie(token:string){
-
-    this.cookieService.set( 'Token', token );
-    this.cookieValue = this.cookieService.get("Test")
+    this.cookieService.set('Token', token );
   }
-
 }

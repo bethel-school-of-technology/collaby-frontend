@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Login } from "../models/Login"
 import { CreateUser } from '../models/CreateUser';
 import { CookieService } from 'ngx-cookie-service';
+import { Profile } from '../models/Profile'
 
 /*const httpOptions = {
   headers: new HttpHeaders({
@@ -49,7 +50,6 @@ export class HttpService {
   }
 
   createPosts(newPost: CreatePost) {
-    newPost.UserId = 1;
     let jsonObj = JSON.stringify(newPost);
     return this.http.post<any>(apiUrl + "posts", jsonObj, this.httpOptions);
   }
@@ -58,8 +58,7 @@ export class HttpService {
     return this.http.post<any>(apiUrl + "users", JSON.stringify(user), this.httpOptions);
   }
 
-  editPost(post: Post) {
-    post.UserId = 1;
+  editPost(post: CreatePost) {
     let jsonObj = JSON.stringify(post);
     return this.http.put<any>(apiUrl + "posts", jsonObj, this.httpOptions);
   }
@@ -71,6 +70,14 @@ export class HttpService {
   }
 
   checkToken() {
-    return this.http.get<any>(apiUrl + "login/check", this.httpOptions)
+    return this.http.get<any>(apiUrl + "login/confirmToken", this.httpOptions)
+  }
+
+  getProfile(): Observable<Profile> {
+    return this.http.get<Profile>(apiUrl + "users/profile", this.httpOptions)
+  }
+
+  getPostsOfUser(): Observable<Post[]> {
+    return this.http.get<Post[]>(apiUrl + "posts", this.httpOptions)
   }
 }

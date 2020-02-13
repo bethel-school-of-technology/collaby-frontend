@@ -32,6 +32,7 @@ export class HomeComponent implements OnInit {
     //deletes post from database
     this._http.deletePost(post).subscribe(data => console.log(data.response));
   }
+  
   ngOnInit() {
     this._http.getPosts().subscribe(data => {
       this.posts = data;
