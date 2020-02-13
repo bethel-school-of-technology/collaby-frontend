@@ -1,1 +1,25 @@
-<p>profile works!</p>
+<div class="profile-head">
+    <img alt="profile picture">
+    <h1 id="name"> {{ profile.firstName }} {{ profile.lastName }}</h1>
+    <h2 id="username"> {{ profile.userName }}</h2>
+    <img alt="rating stars">
+</div>
+<div class="profile-stats">
+    <h3>Follower Count: {{ profile.followers }}</h3>
+    <h3>Post Count: {{ profile.totalPosts }}</h3>
+    <h3>Average Rating: N/A
+        <!--{{ averageRating }}-->
+    </h3>
+</div>
+<div class="profile-posts">
+    <ul *ngFor="let post of userPosts.slice().reverse()">
+        <li class="title">{{ post.title }}</li>
+        <li class="message">{{ post.message }}</li>
+    </ul>
+</div>
+<div class="recent-posts">
+    <h3>Recent Posts</h3>
+    <ul *ngFor="let post of userPosts.slice().reverse(); let i = index">
+        <li *ngIf="i < 4">{{ post.title }} ></li>
+    </ul>
+</div>
