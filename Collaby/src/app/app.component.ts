@@ -8,7 +8,7 @@ import { AboutComponent } from './about/about.component';
 import { CookieService } from 'ngx-cookie-service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, OnInit } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HttpErrorResponse } from '@angular/common/http'
 import { FormsModule } from '@angular/forms'
 import { HttpService } from './services/http.service';
 import { catchError, retry } from 'rxjs/operators';
@@ -25,45 +25,41 @@ export class AppComponent implements OnInit {
 
   }
   validToken:Boolean = false;
-  responseString:string = "";
-  tokenString:string = "";
 
   logout(){
-    this.cookieService.set('Token', null)
+    this.cookieService.set('Token', '')
+    console.log('Successfully logged out')
   }
-  
-  //handleError(error: HttpErrorResponse){
-  //  console.log("problem?");
-  //  return throwError(error);
-  //}
 
   ngOnInit(){
+    var tokenString = new String;
   
     try{
-      this.tokenString = this.cookieService.get('Token') //check if the token cookie exists
-      console.log(this.tokenString)
+      tokenString = this.cookieService.get('Token') //check if the token cookie exists
+      console.log(tokenString);
     
-      if(this.tokenString != ""){
+      if(tokenString != ""){
 
         this._http.checkToken().subscribe(data=>{
-          this.responseString = data.response
-
-          if(this.responseString != "Token is still valid"){
+          
+          if(!data.response){
             this.cookieService.set('Token', "");
             console.log("cookie is set to ''");
-            //alert("Loggin Session has expired")
+            alert("Loggin Session has expired")
           }else{
             this.validToken = true;
-            console.log(data.response)
+            console.log("Token is still valid")
           }
         })
-          //this.cookieService.set('Token', this.tokenString)
+      }else{
+        console.log("token contains an empty value")
       }
       console.log("Test complete")
 
     }catch{
+      console.log("Failed to grab token from cookie; a placeholder has been implemented")
       this.cookieService.set('Token', "")
-      console.log("cookieValue is set to ''")
     }
   }
+
 }

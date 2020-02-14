@@ -12,6 +12,7 @@ export class ProfileComponent implements OnInit {
   constructor(private _http: HttpService) { }
 
   profile: any
+  imgUrl:string = null
 
   userPosts
 

@@ -5,8 +5,5 @@ export class User {
     LastName:string;
     Location:string;
     Img:string;
-    Followers:number;
-    Followings:string;
-    TotalPosts:number;
     
 }
