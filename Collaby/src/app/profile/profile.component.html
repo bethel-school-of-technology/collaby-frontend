@@ -1,25 +1,31 @@
 <div class="profile-head">
-    <img alt="profile picture">
-    <h1 id="name"> {{ profile.firstName }} {{ profile.lastName }}</h1>
-    <h2 id="username"> {{ profile.userName }}</h2>
-    <img alt="rating stars">
+    <div class="left-side">
+        <img class="profile-picture" alt="profile picture" src="../../assets/images/profile-picture-placeholder.png">
+    </div>
+    <div class="right-side">
+        <h1 id="name" class="profile-name"> {{ profile.firstName }} {{ profile.lastName }}</h1>
+        <h2 id="username" class="profile-username"> @{{ profile.userName }}</h2>
+        <img alt="rating stars" src="../../assets/images/stars.png">
+    </div>
 </div>
-<div class="profile-stats">
-    <h3>Follower Count: {{ profile.followers }}</h3>
-    <h3>Post Count: {{ profile.totalPosts }}</h3>
-    <h3>Average Rating: N/A
-        <!--{{ averageRating }}-->
-    </h3>
-</div>
-<div class="profile-posts">
-    <ul *ngFor="let post of userPosts.slice().reverse()">
-        <li class="title">{{ post.title }}</li>
-        <li class="message">{{ post.message }}</li>
-    </ul>
-</div>
-<div class="recent-posts">
-    <h3>Recent Posts</h3>
-    <ul *ngFor="let post of userPosts.slice().reverse(); let i = index">
-        <li *ngIf="i < 4">{{ post.title }} ></li>
-    </ul>
+<div class="content-container">
+    <div class="profile-stats">
+        <h3>Follower Count: <span class="accent">{{ profile.followers }}</span></h3>
+        <h3>Post Count: <span class="accent">{{ profile.totalPosts }}</span></h3>
+        <h3>Average Rating: <span class="accent">5.0
+            <!--{{ averageRating }}--></span>
+        </h3>
+    </div>
+    <div class="profile-posts">
+        <ul *ngFor="let post of userPosts.slice().reverse()">
+            <h2 class="title">{{ post.title }}</h2>
+            <p class="message">{{ post.message }}</p>
+        </ul>
+    </div>
+    <div class="recent-posts">
+        <h3>Recent Posts</h3>
+        <ul class="recent-posts-list" *ngFor="let post of userPosts.slice().reverse(); let i = index">
+            <li *ngIf="i < 4">{{ post.title }} <span class="accent">></span></li>
+        </ul>
+    </div>
 </div>

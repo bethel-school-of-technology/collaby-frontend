@@ -14,7 +14,7 @@ body {
 }
 
 header {
-    background-color: rgb(44, 114, 161);
+    background-color: rgb(51, 135, 190);
     padding: 1em 0;
 }
 
@@ -41,7 +41,7 @@ nav {
 }
 
 .headLink:hover {
-    background-color: rgb(29, 76, 107);
+    background-color: rgb(41, 103, 145);
 }
 
 .logo-h1 {

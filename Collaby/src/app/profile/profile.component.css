@@ -57,3 +57,15 @@
     list-style-type: none;
     padding-left: 0;
 }
+
+.accent {
+    color:  rgb(51, 135, 190);
+}
+
+ul {
+    padding: 0;
+}
+
+.title {
+    margin-top: 0;
+}

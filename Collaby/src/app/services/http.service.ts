@@ -15,7 +15,7 @@ import { Profile } from '../models/Profile'
   })
 }*/
 
-const apiUrl = 'https://localhost:5001/api/'
+const apiUrl = 'http://localhost:5000/api/'
 
 @Injectable({
   providedIn: 'root'

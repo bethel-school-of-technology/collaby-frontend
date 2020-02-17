@@ -1,20 +1,21 @@
 <form class="form" (ngSubmit)="submitPosts()">
+    <h1 class="main-heading">Create a new post!</h1>
+    <h2 class="create-post-heading">Post Title:</h2>
     <textarea rows="1" class="title-box" id="title" name="Title" [(ngModel)]="postToCreate.Title"
         placeholder="Post title"></textarea>
+    <h2 class="create-post-heading">Post Content:</h2>
     <textarea class="message-box" type="text" id="message" name="Message" [(ngModel)]="postToCreate.Message"
         placeholder="Start your post!"></textarea>
     <input type="submit" value="Submit" class="submit-post">
 </form>
 <div class="post-container">
-    <div class="posts">
         <ul class="post-structure" *ngFor="let post of posts.slice().reverse()">
-            <li class="title">{{ post.title }}</li>
-            <li class="message">{{ post.message }}</li>
+            <h2 class="title">{{ post.title }} by {{ post.username }}</h2>
+            <p class="message">{{ post.message }}</p>
             <div class="utility-container">
-                <input class="comment-box" placeholder="add a comment...">
+                Post a Comment: <input class="comment-box" placeholder="add a comment...">
                 <button (click)="placeholder" class="post-comment" type="submit">submit</button>
-                <button (click)="deleteMyPost(post)" class="delete" type="submit">x</button>
+                <button (click)="deleteMyPost(post)" class="delete-button" type="submit">Delete Post</button>
             </div>
         </ul>
-    </div>
 </div>
