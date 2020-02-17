@@ -1,12 +1,15 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+
 import { CreatePost } from '../models/CreatePost';
 import { Post } from '../models/Post';
-import { Observable } from 'rxjs';
-import { Login } from "../models/Login"
+import { Login } from '../models/Login'
 import { CreateUser } from '../models/CreateUser';
+import { Profile } from '../models/Profile';
+import { Comment } from '../models/Comment';
+
+import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-import { Profile } from '../models/Profile'
 
 /*const httpOptions = {
   headers: new HttpHeaders({
@@ -79,5 +82,10 @@ export class HttpService {
 
   getPostsOfUser(): Observable<Post[]> {
     return this.http.get<Post[]>(apiUrl + "posts", this.httpOptions)
+  }
+
+  createComment(newComment: Comment) {
+    let jsonObj = JSON.stringify(newComment)
+    return this.http.post<any>(apiUrl + "comments", jsonObj, this.httpOptions)
   }
 }

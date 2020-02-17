@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
 
   logout(){
     this.cookieService.set('Token', '')
+    window.location.replace('/login')
     console.log('Successfully logged out')
   }
 

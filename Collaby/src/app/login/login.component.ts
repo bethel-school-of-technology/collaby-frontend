@@ -120,7 +120,8 @@ export class LoginComponent implements OnInit {
         alert(data.response);
       }else{
         console.log(data.token)
-        this.createCookie(data.token);
+        this.createCookie(data.token)
+        window.location.replace('/');
       }
     })
   }
