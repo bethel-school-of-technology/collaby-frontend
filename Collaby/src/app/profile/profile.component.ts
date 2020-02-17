@@ -19,11 +19,15 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this._http.getProfile().subscribe(data => {
       this.profile = data;
-      console.log(this.profile)
+      console.log(this.profile.userName)
     })
     this._http.getPostsOfUser().subscribe(data => {
       this.userPosts = data;
       console.log(this.userPosts)
     })
+  }
+
+  getProfile () {
+    console.log(this.profile)
   }
 }

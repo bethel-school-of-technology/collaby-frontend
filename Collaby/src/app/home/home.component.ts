@@ -5,6 +5,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Post } from '../models/Post'
 import { CreatePost } from '../models/CreatePost';
 import { CookieService } from 'ngx-cookie-service';
+import { Rating } from '../models/Rating';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +22,7 @@ export class HomeComponent implements OnInit {
   postArray: Post[]
 
   @Input() postToCreate: CreatePost = new CreatePost
+  @Input() postRating: Rating = new Rating
 
   submitPosts() {
     this._http.createPosts(this.postToCreate).subscribe(data => console.log(data.response))
@@ -31,6 +33,10 @@ export class HomeComponent implements OnInit {
     this.posts = this.posts.filter(p => p.Id == post.Id)
     //deletes post from database
     this._http.deletePost(post).subscribe(data => console.log(data.response));
+  }
+
+  submitRating() {
+    this._http.ratePost(this.postRating).subscribe(data => console.log(data.response))
   }
   
   ngOnInit() {

@@ -7,6 +7,7 @@ import { Login } from '../models/Login'
 import { CreateUser } from '../models/CreateUser';
 import { Profile } from '../models/Profile';
 import { Comment } from '../models/Comment';
+import { Rating } from '../models/Rating';
 
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
@@ -18,7 +19,7 @@ import { CookieService } from 'ngx-cookie-service';
   })
 }*/
 
-const apiUrl = 'http://localhost:5000/api/'
+const apiUrl = 'https://localhost:5001/api/'
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +46,7 @@ export class HttpService {
   }
 
   getPosts(): Observable<Post[]> {
-    return this.http.get<Post[]>(apiUrl + 'posts?', this.httpOptions)
+    return this.http.get<Post[]>(apiUrl + 'posts', this.httpOptions)
   }
 
   getDrafts(): Observable<Post[]> {
@@ -87,5 +88,10 @@ export class HttpService {
   createComment(newComment: Comment) {
     let jsonObj = JSON.stringify(newComment)
     return this.http.post<any>(apiUrl + "comments", jsonObj, this.httpOptions)
+  }
+  
+  ratePost (rating: Rating) {
+    let jsonObj = JSON.stringify(rating)
+    return this.http.post<any>(apiUrl + 'ratings', jsonObj, this.httpOptions)
   }
 }
