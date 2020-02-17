@@ -23,11 +23,12 @@ img {
 .left-side {
     display: inline-block;
     vertical-align: top;
+    margin-top: 50px;
 }
 
 .right-side {
     display: inline-block;
-    margin-left: 475px;
+    margin-left: 200px;
     margin-top: 50px;
     width: 200px;
 }
@@ -112,19 +113,47 @@ img {
 
 .both-sides {
     margin: auto;
-    width: 1300px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
-@media screen and (max-width: 1250px) {
+@media screen and (max-width: 1300px) {
     .both-sides {
         width: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
     .right-side {
-        display: inline-block;
-        width: auto;
+        display: flex;
+        width: 80%;
         margin-left: 0px;
+        margin: 0 auto;
+        flex-direction: column;
     }
     .left-side {
-        display: inline-block;
-  }
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 80%;
+    }
+    .sign-up-input {
+        width: 80%;
+    }
+    .sign-up-btn {
+        width: 80%;
+    }
+    .login-btn {
+        width: 80%;
+    }
+    .login-input {
+        width: 80%;
+    }
+    header {
+        width: 80%;
+    }
+
 }

@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700&display=swap');
-
+ 
 body {
     margin: 0;
     font-family: 'Nunito', 'sans-serif';
@@ -22,7 +22,6 @@ a {
     color: white;
     text-decoration: none;
 }
-
 a.logo {
     font-weight: bold;
 }
@@ -31,7 +30,7 @@ nav {
     float: right;
 }
 
-ul {
+.header-ul {
     list-style-type: none;
     margin: 0;
     display: flex;
@@ -45,6 +44,13 @@ ul {
     background-color: rgb(29, 76, 107);
 }
 
-h1 {
+.logo-h1 {
     margin-top: 2em;
+} 
+
+@media screen and (max-width: 1300px) {
+    .container {
+        width: 100%;
+        margin: 0 auto;
+    }
 }
