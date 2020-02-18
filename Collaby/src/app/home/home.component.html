@@ -9,13 +9,29 @@
     <input type="submit" value="Submit" class="submit-post">
 </form>
 <div class="post-container">
-        <ul class="post-structure" *ngFor="let post of posts.slice().reverse()">
-            <h2 class="title">{{ post.title }} by {{ post.username }}</h2>
-            <p class="message">{{ post.message }}</p>
-            <div class="utility-container">
-                Post a Comment: <input class="comment-box" placeholder="add a comment...">
-                <button (click)="placeholder" class="post-comment" type="submit">submit</button><br>
-                <button (click)="deleteMyPost(post)" class="delete-button" type="submit">Delete Post</button>
-            </div>
-        </ul>
+    <ul class="post-structure" *ngFor="let post of posts; let i = index;">
+        <h2 name="" class="title"> {{ post.title }}</h2>
+        <p class="message">{{ post.message }}</p>
+        <div class="utility-container">
+            <form (ngSubmit)="submitComment(post.id)">
+                Post a Comment: <input class="comment-box" name="Message" [(ngModel)]="commentToCreate.Message"
+                    placeholder="add a comment...">
+                <input class="" type="input" value="{{ post.id }}" name="PostId" [(ngModel)]="commentToCreate.PostId">
+                <input class="post-comment" type="submit" value="Submit"><br>
+            </form>
+            <!-- <form class="" (ngSubmit)="submitRating()">
+                <h3>Rate this Post!</h3>
+                <select name="Value" [(ngModel)]="postRating.Value">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <input type="submit" value="Submit" class="submit-rating">
+            </form> -->
+            <button (click)="deleteMyPost(post)" class="delete-button" type="submit">Delete Post</button>
+        </div>
+    </ul>
 </div>

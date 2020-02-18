@@ -1,9 +1,9 @@
-export class Comment {
-    
-    Id:number;
-    Message:string;
-    UserId:number;
-    PostId:number;
-    IsDraft:number;
-    DateCreated?:Date;
+import { CreateComment } from './CreateComment'
+
+export class Comment extends CreateComment {
+
+    Id: number;
+    UserId: number;
+    IsDraft: number;
+    DateCreated?: Date;
 }

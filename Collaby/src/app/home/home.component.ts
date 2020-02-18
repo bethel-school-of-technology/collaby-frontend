@@ -1,11 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../services/http.service'
+import { Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Post } from '../models/Post'
 import { CreatePost } from '../models/CreatePost';
 import { CookieService } from 'ngx-cookie-service';
 import { Rating } from '../models/Rating';
+import { CreateComment } from '../models/CreateComment';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +18,7 @@ import { Rating } from '../models/Rating';
 
 export class HomeComponent implements OnInit {
 
-  constructor(private _http: HttpService, private cookieService:CookieService) { }
+  constructor(private _http: HttpService, private cookieService: CookieService, @Inject(DOCUMENT) document) { }
 
   posts: Post[]
 
@@ -23,27 +26,37 @@ export class HomeComponent implements OnInit {
 
   @Input() postToCreate: CreatePost = new CreatePost
   @Input() postRating: Rating = new Rating
+  @Input() commentToCreate: CreateComment = new CreateComment
 
   submitPosts() {
-    this._http.createPosts(this.postToCreate).subscribe(data => console.log(data.response))
+    this._http.createPosts(this.postToCreate).subscribe(data => console.log(data.response));
+    setTimeout(function () { window.location.replace('/'); }, 500);
   }
 
+
+
   deleteMyPost(post: Post) {
-    //deletes post from UI
-    this.posts = this.posts.filter(p => p.Id == post.Id)
     //deletes post from database
     this._http.deletePost(post).subscribe(data => console.log(data.response));
+    setTimeout(function () { window.location.replace('/'); }, 500);
   }
 
   submitRating() {
-    this._http.ratePost(this.postRating).subscribe(data => console.log(data.response))
+    this._http.ratePost().subscribe(data => console.log(data.response))
   }
-  
+
   ngOnInit() {
     console.log(this.cookieService.get('Token'))
-    this._http.getPosts().subscribe(data => {
+    this._http.getTopRatedPosts().subscribe(data => {
       this.posts = data;
       console.log(this.posts)
     })
+  }
+
+
+
+  submitComment(postId) {
+    this.commentToCreate.PostId = postId
+    this._http.createComment(this.commentToCreate).subscribe(data => console.log(data.response))
   }
 }
