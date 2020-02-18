@@ -22,12 +22,10 @@ export class HomeComponent implements OnInit {
   constructor(private _http: HttpService, private cookieService: CookieService, @Inject(DOCUMENT) document) { }
 
   posts: Post[]
-
-  comments: Comment[]
-
-  comment: Comment
-
   postArray: Post[]
+  
+  comments: Comment[]
+  comment: Comment
 
   @Input() postToCreate: CreatePost = new CreatePost
   @Input() postRating: Rating = new Rating
@@ -37,8 +35,6 @@ export class HomeComponent implements OnInit {
     this._http.createPosts(this.postToCreate).subscribe(data => console.log(data.response));
     setTimeout(function () { window.location.replace('/'); }, 500);
   }
-
-
 
   deleteMyPost(post: Post) {
     //deletes post from database
@@ -51,13 +47,11 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.cookieService.get('Token'))
     this._http.getTopRatedPosts().subscribe(data => {
       this.posts = data;
       console.log(this.posts)
     })
   }
-
   
   viewComments(postId) {
     this._http.getComments(postId).subscribe(data => {

@@ -54,6 +54,8 @@ export class LoginComponent implements OnInit {
           this.user.Img = null;
         }else{
           reader.onload = this.handleReaderLoaded.bind(this);
+          reader.readAsBinaryString(file)
+          
         }
       }, 2000);
       //let img = new Image();
