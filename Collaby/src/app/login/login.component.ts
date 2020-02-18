@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit {
     }
     else{
       this.user.Password = this.pass.Pass
-      this._http.createUser(this.user).subscribe(data=>console.log(data.response))
+      this._http.createUser(this.user).subscribe(data=>alert(data.response + ", please login"))
     }
   }
 

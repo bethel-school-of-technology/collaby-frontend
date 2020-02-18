@@ -9,7 +9,8 @@ import { CreatePost } from '../models/CreatePost';
 import { CookieService } from 'ngx-cookie-service';
 import { Rating } from '../models/Rating';
 import { CreateComment } from '../models/CreateComment';
-
+import { Comment } from '../models/Comment'
+ 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -21,6 +22,10 @@ export class HomeComponent implements OnInit {
   constructor(private _http: HttpService, private cookieService: CookieService, @Inject(DOCUMENT) document) { }
 
   posts: Post[]
+
+  comments: Comment[]
+
+  comment: Comment
 
   postArray: Post[]
 
@@ -53,8 +58,14 @@ export class HomeComponent implements OnInit {
     })
   }
 
-
-
+  
+  viewComments(postId) {
+    this._http.getComments(postId).subscribe(data => {
+    this.comments = data;
+    console.log(this.comments)
+    })
+  }
+  
   submitComment(postId) {
     this.commentToCreate.PostId = postId
     this._http.createComment(this.commentToCreate).subscribe(data => console.log(data.response))

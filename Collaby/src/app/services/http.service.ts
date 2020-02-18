@@ -50,6 +50,10 @@ export class HttpService {
     return this.http.get<Post[]>(apiUrl + 'posts/TopRated', this.httpOptions)
   }
 
+  getComments(postId): Observable<Comment[]> {
+    return this.http.get<Comment[]>(apiUrl + 'comments/' + postId, this.httpOptions)
+  }
+
   getDrafts(): Observable<Post[]> {
     return this.http.get<Post[]>(apiUrl + 'posts/drafts', this.httpOptions)
   }
