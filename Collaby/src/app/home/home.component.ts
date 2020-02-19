@@ -10,7 +10,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Rating } from '../models/Rating';
 import { CreateComment } from '../models/CreateComment';
 import { Comment } from '../models/Comment'
- 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -53,21 +53,21 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     console.log(this.cookieService.get('Token'))
     this._http.getTopRatedPosts().subscribe(data => {
-      this.posts = data;
+      this.posts = data
       console.log(this.posts)
     })
   }
 
-  
+
   viewComments(postId) {
     this._http.getComments(postId).subscribe(data => {
-    this.comments = data;
-    console.log(this.comments)
+      this.comments = data;
+      console.log(this.comments)
     })
   }
-  
+
   submitComment(postId) {
     this.commentToCreate.PostId = postId
-    this._http.createComment(this.commentToCreate).subscribe(data => console.log(data.response))
+    this._http.createComment(this.commentToCreate).subscribe(data => alert(data.response))
   }
 }

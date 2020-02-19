@@ -5,16 +5,16 @@
     <div class="right-side">
         <h1 id="name" class="profile-name"> {{ profile.firstName }} {{ profile.lastName }}</h1>
         <h2 id="username" class="profile-username"> @{{ profile.userName }}</h2>
-        <img alt="rating stars" src="../../assets/images/stars.png">
+        <!-- <img alt="rating stars" src="../../assets/images/stars.png"> -->
     </div>
 </div>
 <div class="content-container">
     <div class="profile-stats">
-        <h3>Follower Count: <span class="accent">{{ profile.followers }}</span></h3>
+        <!-- <h3>Follower Count: <span class="accent">{{ profile.followers }}</span></h3> -->
         <h3>Post Count: <span class="accent">{{ profile.totalPosts }}</span></h3>
-        <h3>Average Rating: <span class="accent">5.0
-            <!--{{ averageRating }}--></span>
-        </h3>
+        <!-- <h3>Average Rating: <span class="accent">5.0
+        {{ averageRating }}
+        </h3> -->
     </div>
     <div class="profile-posts">
         <ul *ngFor="let post of userPosts.slice().reverse()">

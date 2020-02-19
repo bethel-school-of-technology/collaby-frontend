@@ -2,8 +2,8 @@ import { CreatePost } from './CreatePost';
 
 export class Post extends CreatePost {
 
-    UserId:number;
-    Id: number;
+    UserId: number;
+    id: number;
     DateCreated?: Date;
     DateModified?: Date;
     RatingValue?: number; //all ratings combined
