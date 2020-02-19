@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
 
   posts: Post[]
   postArray: Post[]
-  
+
   comments: Comment[]
   comment: Comment
 
@@ -52,12 +52,8 @@ export class HomeComponent implements OnInit {
       console.log(this.posts)
     })
   }
-<<<<<<< HEAD
 
 
-=======
-  
->>>>>>> eaca6ba42e9f3869def2804cfa4ff09322b8b812
   viewComments(postId) {
     this._http.getComments(postId).subscribe(data => {
       this.comments = data;

@@ -16,12 +16,11 @@
     <div class="profile-stats">
         <!-- <h3>Follower Count: <span class="accent">{{ profile.followers }}</span></h3> -->
         <h3>Post Count: <span class="accent">{{ profile.totalPosts }}</span></h3>
-        <h3>Average Rating: <span class="accent">
+        <!-- <h3>Average Rating: <span class="accent">
                 <div *ngIf="profile.ratedPosts == 0; else elseBlock">None of your posts have been rated yet</div>
                 <ng-template #elseBlock>{{ profile.totalRating / profile.ratedPosts}}</ng-template>
-                <!--{{ averageRating }}-->
             </span>
-        </h3>
+        </h3> -->
     </div>
     <div class="profile-posts">
         <ul *ngFor="let post of userPosts.slice().reverse()">
