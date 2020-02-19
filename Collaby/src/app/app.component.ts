@@ -37,7 +37,6 @@ export class AppComponent implements OnInit {
   
     try{
       tokenString = this.cookieService.get('Token') //check if the token cookie exists
-      console.log(tokenString);
     
       if(tokenString != ""){
 
