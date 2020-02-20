@@ -14,12 +14,12 @@
         <p class="message">{{ post.message }}</p>
         <div class="utility-container">
             <form (ngSubmit)="viewComments(post.id)">
-            <input class="" type="submit" value="View Comments">
-            <ng-container *ngFor="let comment of comments">
-            <div class="comments-container" *ngIf="comment.postId == post.id">
-                <p class="comment-message">{{ comment.message }}</p>
-            </div>
-            </ng-container>
+                <input class="view-comment" type="submit" value="View Comments">
+                <ng-container *ngFor="let comment of comments">
+                    <div class="comments-container" *ngIf="comment.postId == post.id">
+                        <p class="comment-message">{{ comment.message }}</p>
+                    </div>
+                </ng-container>
             </form>
             <form (ngSubmit)="submitComment(post.id)">
                 Post a Comment: <input class="comment-box" name="Message" [(ngModel)]="commentToCreate.Message"

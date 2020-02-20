@@ -1,1 +1,1 @@
-# collaby-frontend
+# bloggle-frontend

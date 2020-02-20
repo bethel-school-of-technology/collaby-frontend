@@ -8,7 +8,7 @@ import { CreateUser } from '../models/CreateUser';
 import { Profile } from '../models/Profile';
 import { Comment } from '../models/Comment';
 import { Rating } from '../models/Rating';
-import { CreateComment } from '../models/CreateComment'
+import { CreateComment } from '../models/CreateComment';
 
 import { Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
@@ -20,7 +20,7 @@ import { CookieService } from 'ngx-cookie-service';
   })
 }*/
 
-const apiUrl = 'http://localhost:5000/api/'
+const apiUrl = 'http://localhost:5000/api/';
 
 @Injectable({
   providedIn: 'root'
@@ -60,39 +60,43 @@ export class HttpService {
 
   createPosts(newPost: CreatePost) {
     let jsonObj = JSON.stringify(newPost);
-    return this.http.post<any>(apiUrl + "posts", jsonObj, this.httpOptions);
+    return this.http.post<any>(apiUrl + 'posts', jsonObj, this.httpOptions);
   }
 
   createUser(user: CreateUser) {
-    return this.http.post<any>(apiUrl + "users", JSON.stringify(user), this.httpOptions);
+    return this.http.post<any>(apiUrl + 'users', JSON.stringify(user), this.httpOptions);
   }
 
   editPost(post: CreatePost) {
     let jsonObj = JSON.stringify(post);
-    return this.http.put<any>(apiUrl + "posts", jsonObj, this.httpOptions);
+    return this.http.put<any>(apiUrl + 'posts', jsonObj, this.httpOptions);
   }
 
   deletePost(post: Post) {
+<<<<<<< HEAD
     let postBody = JSON.stringify(post)
     let url = `${apiUrl + "posts"}/`+post.Id
+=======
+    let url = `${apiUrl}posts/` + post.id
+>>>>>>> 6992f9f765e26c70a6ed7c86e0d58b8788ef0825
     return this.http.delete<any>(url, this.httpOptions)
   }
 
   checkToken() {
-    return this.http.get<any>(apiUrl + "login/confirmToken", this.httpOptions)
+    return this.http.get<any>(apiUrl + 'login/confirmToken', this.httpOptions)
   }
 
   getProfile(): Observable<Profile> {
-    return this.http.get<Profile>(apiUrl + "users/profile", this.httpOptions)
+    return this.http.get<Profile>(apiUrl + 'users/profile', this.httpOptions)
   }
 
   getPostsOfUser(): Observable<Post[]> {
-    return this.http.get<Post[]>(apiUrl + "posts", this.httpOptions)
+    return this.http.get<Post[]>(apiUrl + 'posts', this.httpOptions)
   }
 
   createComment(newComment: CreateComment) {
     let jsonObj = JSON.stringify(newComment);
-    return this.http.post<any>(apiUrl + "comments", jsonObj, this.httpOptions)
+    return this.http.post<any>(apiUrl + 'comments', jsonObj, this.httpOptions)
   }
 
   ratePost() {

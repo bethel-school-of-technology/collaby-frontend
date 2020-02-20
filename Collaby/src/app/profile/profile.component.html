@@ -1,23 +1,26 @@
 <div class="profile-head">
     <div class="left-side">
-        
-    <div *ngIf="profile.img!=null; else elseImg"><img class="profile-picture" alt="Issue with loading image" src="{{ profile.img }}"></div>
-        <ng-template #elseImg><img class="profile-picture" alt="Issue with loading image" src="../../assets/images/profile-picture-placeholder.png"></ng-template>
+
+        <div *ngIf="profile.img!=null; else elseImg"><img class="profile-picture" alt="Issue with loading image"
+                src="{{ profile.img }}"></div>
+        <ng-template #elseImg><img class="profile-picture" alt="Issue with loading image"
+                src="../../assets/images/profile-picture-placeholder.png"></ng-template>
     </div>
     <div class="right-side">
         <h1 id="name" class="profile-name"> {{ profile.firstName }} {{ profile.lastName }}</h1>
         <h2 id="username" class="profile-username"> @{{ profile.userName }}</h2>
-        <img alt="rating stars" src="../../assets/images/stars.png">
+        <!-- <img alt="rating stars" src="../../assets/images/stars.png"> -->
     </div>
 </div>
 <div class="content-container">
     <div class="profile-stats">
-        <h3>Follower Count: <span class="accent">{{ profile.followers }}</span></h3>
+        <!-- <h3>Follower Count: <span class="accent">{{ profile.followers }}</span></h3> -->
         <h3>Post Count: <span class="accent">{{ profile.totalPosts }}</span></h3>
-        <h3>Average Rating: <span class="accent"><div *ngIf="profile.ratedPosts == 0; else elseBlock">None of your posts have been rated yet</div>
-        <ng-template #elseBlock>{{ profile.totalRating / profile.ratedPosts}}</ng-template>
-            <!--{{ averageRating }}--></span>
-        </h3>
+        <!-- <h3>Average Rating: <span class="accent">
+                <div *ngIf="profile.ratedPosts == 0; else elseBlock">None of your posts have been rated yet</div>
+                <ng-template #elseBlock>{{ profile.totalRating / profile.ratedPosts}}</ng-template>
+            </span>
+        </h3> -->
     </div>
     <div class="profile-posts">
         <ul *ngFor="let post of userPosts.slice().reverse()">
