@@ -73,12 +73,7 @@ export class HttpService {
   }
 
   deletePost(post: Post) {
-<<<<<<< HEAD
-    let postBody = JSON.stringify(post)
-    let url = `${apiUrl + "posts"}/`+post.Id
-=======
     let url = `${apiUrl}posts/` + post.id
->>>>>>> 6992f9f765e26c70a6ed7c86e0d58b8788ef0825
     return this.http.delete<any>(url, this.httpOptions)
   }
 
