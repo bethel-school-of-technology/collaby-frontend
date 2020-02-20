@@ -74,8 +74,8 @@ export class HttpService {
 
   deletePost(post: Post) {
     let postBody = JSON.stringify(post)
-    let url = `${apiUrl + "posts"}/delete`
-    return this.http.post<any>(url, postBody, this.httpOptions)
+    let url = `${apiUrl + "posts"}/`+post.Id
+    return this.http.delete<any>(url, this.httpOptions)
   }
 
   checkToken() {
