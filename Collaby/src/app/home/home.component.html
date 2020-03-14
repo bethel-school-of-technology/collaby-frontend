@@ -26,18 +26,19 @@
                     placeholder="add a comment...">
                 <input class="post-comment" type="submit" value="Submit"><br>
             </form>
-            <!-- <form class="" (ngSubmit)="submitRating()">
-                <h3>Rate this Post!</h3>
-                <select name="Value" [(ngModel)]="postRating.Value">
-                    <option value="0">0</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
+            <form class="" (ngSubmit)="submitRating(post.id)">
+                <mat-form-field>
+                    <mat-label>Rate this Post!</mat-label>
+                    <mat-select [(value)]="rating">
+                        <mat-option value=1>1</mat-option>
+                        <mat-option value=2>2</mat-option>
+                        <mat-option value=3>3</mat-option>
+                        <mat-option value=4>4</mat-option>
+                        <mat-option value=5>5</mat-option>
+                    </mat-select>
+                </mat-form-field>
                 <input type="submit" value="Submit" class="submit-rating">
-            </form> -->
+            </form>
             <button (click)="deleteMyPost(post)" class="delete-button" type="submit">Delete Post</button>
         </div>
     </ul>

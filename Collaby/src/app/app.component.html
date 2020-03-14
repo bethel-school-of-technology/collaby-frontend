@@ -4,9 +4,11 @@
     <nav>
       <ul class="header-ul">
         <li><a class="headLink" href="#" routerLink="/">Home</a></li>
-        <li><a class="headLink" href="#" routerLink="/profile">Profile</a></li>
         <div *ngIf="validToken; then thenBlock else elseBlock"></div>
-        <ng-template #thenBlock><li><a (click)="logout()" class="headLink" href="#" routerLink="/login">Logout</a></li></ng-template>
+        <ng-template #thenBlock>
+          <li><a class="headLink" href="#" routerLink="/profile">Profile</a></li>
+          <li><a (click)="logout()" class="headLink" href="#" routerLink="/login">Logout</a></li>
+        </ng-template>
         <ng-template #elseBlock><li><a class="headLink" href="#" routerLink="/login">Login</a></li></ng-template>
       </ul>
     </nav>

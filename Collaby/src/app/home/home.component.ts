@@ -2,14 +2,13 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpService } from '../services/http.service'
 import { Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { Post } from '../models/Post'
 import { CreatePost } from '../models/CreatePost';
 import { CookieService } from 'ngx-cookie-service';
 import { Rating } from '../models/Rating';
 import { CreateComment } from '../models/CreateComment';
-import { Comment } from '../models/Comment'
+import { Comment } from '../models/Comment';
 
 @Component({
   selector: 'app-home',
@@ -26,10 +25,11 @@ export class HomeComponent implements OnInit {
 
   comments: Comment[]
   comment: Comment
+  postRating: Rating = new Rating
 
   @Input() postToCreate: CreatePost = new CreatePost
-  @Input() postRating: Rating = new Rating
   @Input() commentToCreate: CreateComment = new CreateComment
+  @Input() rating:string
 
   submitPosts() {
     this._http.createPosts(this.postToCreate).subscribe(data => console.log(data.response));
@@ -42,8 +42,11 @@ export class HomeComponent implements OnInit {
     setTimeout(function () { window.location.replace('/'); }, 500);
   }
 
-  submitRating() {
-    this._http.ratePost().subscribe(data => console.log(data.response))
+  submitRating(postId) {
+    this.postRating.PostId = postId;
+    this.postRating.Value = parseInt(this.rating);
+
+    this._http.ratePost(this.postRating).subscribe(data => console.log(data.response))
   }
 
   ngOnInit() {

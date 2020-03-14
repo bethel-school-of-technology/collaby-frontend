@@ -11,7 +11,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { AboutComponent } from './about/about.component';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpService } from './services/http.service';
-//import { throwError } from 'rxjs';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule, MatFormFieldModule, MatOptionModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -19,15 +20,19 @@ import { HttpService } from './services/http.service';
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    AboutComponent
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    NoopAnimationsModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatOptionModule
   ],
-  providers: [ CookieService ],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule{

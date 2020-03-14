@@ -94,8 +94,8 @@ export class HttpService {
     return this.http.post<any>(apiUrl + 'comments', jsonObj, this.httpOptions)
   }
 
-  ratePost() {
-    let jsonObj = JSON.stringify({ Value: 5, PostId: 3 })
+  ratePost(rating:Rating) {
+    let jsonObj = JSON.stringify({ rating })
     return this.http.post<any>(apiUrl + 'ratings', jsonObj, this.httpOptions)
   }
 }
